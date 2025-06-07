@@ -18,9 +18,11 @@ Thumbs.db
 
 # dotenv files (security)
 .env
+server/.env
 
 # SDKs like Mothership (generated with `npx api install`)
-@api/
+server/@api/
+server/.api/
 
 # IDE/project settings
 .vscode/
