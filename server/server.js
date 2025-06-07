@@ -1,25 +1,15 @@
-require('dotenv').config();
 const express = require('express');
-const axios = require('axios');
 const cors = require('cors');
+const bodyParser = require('body-parser');
+const config = require('./config');
+const routes = require('./routes');
 
 const app = express();
 app.use(cors());
-app.use(express.json());
+app.use(bodyParser.json());
 
-app.post('/api/get-ltl-rates', async (req, res) => {
-  try {
-    const response = await axios.post('https://api.mothership.com/v2/quotes', req.body, {
-      headers: {
-        Authorization: `Bearer ${process.env.MOTHERSHIP_API_KEY}`,
-        'Content-Type': 'application/json',
-      },
-    });
-    res.json(response.data);
-  } catch (error) {
-    console.error('Error fetching quote:', error?.response?.data || error.message);
-    res.status(500).json({ error: 'Failed to fetch quote' });
-  }
-});
+app.post('/api/quote', routes.get_quotes);
 
-app.listen(3001, () => console.log('Backend running on port 3001'));
+app.listen(config.server_port, () => console.log(`Server running on http://${config.server_host}:${config.server_port}/`));
+
+module.exports = app;
