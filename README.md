@@ -1,30 +1,42 @@
 # LTL Quote Tool
 
-This project provides a full-stack web tool for requesting LTL freight quotes using the [Mothership API](https://developers.mothership.com/reference/createquote).
+A modern, full-stack web app for generating LTL freight shipping quotes using the [Mothership API](https://developers.mothership.com/).
 
-## 🔧 Technologies
-- Frontend: React (client-side form)
-- Backend: Node.js + Express (API proxy)
-- API: Mothership LTL Quote
+Built with:
+- **Frontend:** Vite + React + MUI (Material UI)
+- **Backend:** Node.js + Express + Mothership SDK
 
 ---
 
-## 📁 Project Structure
+## 🚀 Features
+
+- Collects detailed shipping info via a responsive form (pickup, delivery, freight)
+- Sends quote request to Mothership API
+- Displays results in a sortable, paginated Material UI DataGrid
+- Fast modern stack: Vite + MUI for UI, Express backend
+
+---
+
+## 🧱 Folder Structure
 
 ```
 ltl-quote-tool/
-├── client/              # React frontend
-│   └── QuoteForm.jsx
-├── server/              # Express backend
-│   └── server.js
-└── README.md
+├── client/          # Vite React frontend
+│   ├── src/
+│   │   ├── components/QuoteForm.jsx
+│   │   ├── components/QuoteResultsTable.jsx
+│   │   └── main.jsx, App.jsx
+├── server/          # Node.js backend
+│   ├── server.js
+│   ├── routes.js
+│   └── .env         # stores API key securely (not committed)
 ```
 
 ---
 
-## 🚀 Getting Started
+## ⚙️ Installation & Setup
 
-### 1. Clone the Repository
+### 1. Clone the Repo
 
 ```bash
 git clone https://github.com/Jeff-git-li/ltl-quote-tool.git
@@ -33,76 +45,65 @@ cd ltl-quote-tool
 
 ---
 
-## 🖥️ Running the Frontend
-
-```bash
-cd client
-npm install
-npm start
-```
-
-This runs the React development server on [http://localhost:3000](http://localhost:3000).
-
----
-
-## 🛠️ Running the Backend
+### 2. Backend Setup (`/server`)
 
 ```bash
 cd server
 npm install
 ```
 
+Generate the Mothership SDK:
+
+```bash
+npx api install "@mothership/v0.9#cmi6fx2tm8oou17d"
+```
+
 Create a `.env` file:
+```env
+MOTHERSHIP_API_KEY=sk_live_YourKeyHere
+```
+
+Run the server:
+```bash
+npm start
+```
+
+> The backend will run on `http://localhost:5000`.
+
+---
+
+### 3. Frontend Setup (`/client`)
 
 ```bash
-MOTHERSHIP_API_KEY=your_api_key_here
+cd ../client
+npm install
+npm run dev
 ```
 
-Then run:
-
-```bash
-node server.js
-```
-
-This starts the Express backend on [http://localhost:3001](http://localhost:3001).
+> The frontend will run on `http://localhost:3000`.
 
 ---
 
-## 🔄 How It Works
+## 🧪 How to Use
 
-1. User fills out LTL quote form
-2. Frontend sends form data to backend (`/api/get-ltl-rates`)
-3. Backend forwards request to Mothership API
-4. Response is returned and displayed to the user
-
----
-
-## ✅ Testing
-
-You can test by:
-- Filling in valid zip codes, dimensions, weight, and freight class
-- Watching the results populate under the form
-
-Example Test Inputs:
-```
-Pickup Zip: 90001
-Destination Zip: 10001
-Weight: 500
-Dimensions: 48x40x60
-Freight Class: 70
-```
+1. Fill out the required fields in the quote request form
+2. Submit to request quotes
+3. View available rate options in a responsive, sortable table
 
 ---
 
-## 🌐 Deployment
+## 📦 Deployment Notes
 
-- Frontend: Deploy `client` folder to [Vercel](https://vercel.com) or [Netlify](https://netlify.com)
-- Backend: Deploy `server` folder to [Render](https://render.com) or [Fly.io](https://fly.io)
-
-Ensure you set `MOTHERSHIP_API_KEY` as an environment variable in your backend host.
+- **Never commit your `.env` or `@api/` folder.**
+- Make sure `.gitignore` includes:
+  ```gitignore
+  node_modules/
+  @api/
+  .env
+  ```
 
 ---
 
 ## 📄 License
 
-MIT
+MIT © 2025 Jeff-git-li
