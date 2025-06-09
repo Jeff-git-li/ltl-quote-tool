@@ -6,10 +6,10 @@
     "start": "node server.js"
   },
   "dependencies": {
-    "@api/mothership": "file:.api/apis/mothership",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "axios": "^1.4.0"
   }
 }

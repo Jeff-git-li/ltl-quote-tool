@@ -41,7 +41,7 @@ export default function HomePage() {
     };
 
     try {
-      const res = await axios.post('http://localhost:5001/api/quote', payload);
+      const res = await axios.post(`http://${import.meta.env.VITE_API_URL}`, payload);
       setQuote(res.data);
     } catch (error) {
       console.error(error);
