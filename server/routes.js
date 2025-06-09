@@ -3,13 +3,13 @@ dotenv.config();
 const mothership = require('@api/mothership');
 
 mothership.auth(process.env.MOTHERSHIP_API_KEY);
-//mothership.server('https://api.mothership.com/beta');
+// mothership.server('https://api.mothership.com/beta');
 
 /* -------------------------------------------------- */
 /* ------------------- Route Handlers --------------- */
 /* -------------------------------------------------- */
 
-// Route 1: POST 
+// Route 1: POST quote form and return the result json
 
 const get_quotes = async function (req, res) {
   
@@ -56,7 +56,7 @@ const get_quotes = async function (req, res) {
         time: pickupReadyTime
       }
     });
-    console.log(response.data);
+    // console.log(response.data);
     res.json(response.data);
   } catch (error) {
     console.error(error);

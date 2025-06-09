@@ -4,7 +4,7 @@ import { indigo, amber } from '@mui/material/colors'
 import { createTheme } from "@mui/material/styles";
 
 import NavBar from './components/NavBar';
-import HomePage from './pages/HomePage';
+import QuotePage from './pages/QuotePage';
 
 // createTheme enables you to customize the look and feel of your app past the default
 // in this case, we only change the color scheme
@@ -26,7 +26,7 @@ export default function App() {
       <BrowserRouter>
         <NavBar />
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<QuotePage />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>

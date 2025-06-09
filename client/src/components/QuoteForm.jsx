@@ -1,10 +1,8 @@
-import React from 'react';
 import {
   Grid,
   TextField,
   MenuItem,
   Button,
-  Typography,
 } from '@mui/material';
 
 export default function QuoteForm({ form, setForm, handleSubmit }) {
@@ -12,37 +10,54 @@ export default function QuoteForm({ form, setForm, handleSubmit }) {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
+  // Type of this cargo. Can be: Bag, Bale, Box, Bucket, 
+  // Bundle, Can, Carton, Case, Coil, Crate, Cylinder, Drum, 
+  // Pail, Pallet, Pieces, Reel, Roll, Skid, Tote, or Tube
+  const cargoType = [
+    {value: 'Bag'},
+    {value: 'Bale'},
+    {value: 'Box'},
+    {value: 'Bucket'},
+    {value: 'Bundle'},
+    {value: 'Can'},
+    {value: 'Carton'},
+    {value: 'Case'},
+    {value: 'Coil'},
+    {value: 'Crate'},
+    {value: 'Cylinder'},
+    {value: 'Drum'},
+    {value: 'Pail'},
+    {value: 'Pallet'},
+    {value: 'Pieces'},
+    {value: 'Reel'},
+    {value: 'Roll'},
+    {value: 'Skid'},
+    {value: 'Tote'},
+    {value: 'Tube'},
+  ]
+
   return (
     <>
-      <Typography variant="h4" gutterBottom>
-        LTL Quote Request
-      </Typography>
-
       <form onSubmit={handleSubmit}>
-        <Grid container spacing={2}>
-          <Grid item xs={6}>
-            <TextField label="Pickup Zip" name="pickupZip" fullWidth required value={form.pickupZip} onChange={handleChange} />
-          </Grid>
-          <Grid item xs={6}>
-            <TextField label="Delivery Zip" name="deliveryZip" fullWidth required value={form.deliveryZip} onChange={handleChange} />
+        <Grid container spacing={2} sx={{
+            justifyContent: "center",
+            alignItems: "center",
+            px: 40
+        }}
+        >
+        <Grid item xs={12}><h2>LTL Quote Request</h2></Grid>
+
+          <Grid item xs={3}>
+            <TextField 
+              label="Pickup Zip" 
+              name="pickupZip" 
+              required 
+              value={form.pickupZip} 
+              onChange={handleChange} />
           </Grid>
 
-          {/*
 
-          <Grid item xs={6}>
-            <TextField label="Pickup Open Time" name="pickupOpenTime" fullWidth value={form.pickupOpenTime} onChange={handleChange} />
-          </Grid>
-          <Grid item xs={6}>
-            <TextField label="Pickup Close Time" name="pickupCloseTime" fullWidth value={form.pickupCloseTime} onChange={handleChange} />
-          </Grid>
-          <Grid item xs={6}>
-            <TextField label="Delivery Open Time" name="deliveryOpenTime" fullWidth value={form.deliveryOpenTime} onChange={handleChange} />
-          </Grid>
-          <Grid item xs={6}>
-            <TextField label="Delivery Close Time" name="deliveryCloseTime" fullWidth value={form.deliveryCloseTime} onChange={handleChange} />
-          </Grid>
-
-          <Grid item xs={6}>
+          <Grid item xs={3}>
             <TextField
               label="Pickup Ready Date"
               type="date"
@@ -53,42 +68,79 @@ export default function QuoteForm({ form, setForm, handleSubmit }) {
               onChange={handleChange}
             />
           </Grid>
-          <Grid item xs={6}>
-            <TextField label="Pickup Ready Time" name="pickupReadyTime" fullWidth value={form.pickupReadyTime} onChange={handleChange} />
+          <Grid item xs={3}>
+            <TextField 
+              label="Pickup Ready Time" 
+              type='time'
+              name="pickupReadyTime" 
+              inputProps={{
+                step: 3600  // 3600 seconds = 1 hour
+              }}
+              fullWidth
+              InputLabelProps={{ shrink: true }}
+              value={form.pickupReadyTime} 
+              onChange={handleChange} />
           </Grid>
 
+          <Grid item xs={3}>
+            <TextField 
+              label="Delivery Zip" 
+              name="deliveryZip" 
+              required 
+              value={form.deliveryZip} 
+              onChange={handleChange} />
+          </Grid>
+
+          {/*
+
+          <Grid item xs={3}>
+            <TextField label="Pickup Open Time" type="time" name="pickupOpenTime" value={form.pickupOpenTime} onChange={handleChange} />
+          </Grid>
+          <Grid item xs={3}>
+            <TextField label="Pickup Close Time" type="time" name="pickupCloseTime" value={form.pickupCloseTime} onChange={handleChange} />
+          </Grid>
+          <Grid item xs={3}>
+            <TextField label="Delivery Open Time" type="time" name="deliveryOpenTime" value={form.deliveryOpenTime} onChange={handleChange} />
+          </Grid>
+          <Grid item xs={3}>
+            <TextField label="Delivery Close Time" type="time" name="deliveryCloseTime" fullWidth value={form.deliveryCloseTime} onChange={handleChange} />
+          </Grid>
 
           */}
 
-          <Grid item xs={6}>
+
+          <Grid item xs={2}>
             <TextField
               select
               label="Freight Type"
               name="type"
-              fullWidth
               required
+              fullWidth
               value={form.type}
               onChange={handleChange}
             >
-              <MenuItem value="Pallet">Pallet</MenuItem>
-              <MenuItem value="Bag">Bag</MenuItem>
+                {cargoType.map((option) => (
+                    <MenuItem key={option.value} value={option.value}>
+                        {option.value}
+                    </MenuItem>
+                ))}
             </TextField>
           </Grid>
-          <Grid item xs={6}>
-            <TextField label="Quantity" name="quantity" type="number" required fullWidth value={form.quantity} onChange={handleChange} />
+          <Grid item xs={2}>
+            <TextField label="Quantity" name="quantity" type="number" required value={form.quantity} onChange={handleChange} />
           </Grid>
 
-          <Grid item xs={3}>
-            <TextField label="Weight (lbs)" name="weight" type="number" required fullWidth onChange={handleChange} />
+          <Grid item xs={2}>
+            <TextField label="Weight (lbs)" name="weight" type="number" required onChange={handleChange} />
           </Grid>
-          <Grid item xs={3}>
-            <TextField label="Length (in)" name="length" type="number" required fullWidth onChange={handleChange} />
+          <Grid item xs={2}>
+            <TextField label="Length (in)" name="length" type="number" required onChange={handleChange} />
           </Grid>
-          <Grid item xs={3}>
-            <TextField label="Width (in)" name="width" type="number" required fullWidth onChange={handleChange} />
+          <Grid item xs={2}>
+            <TextField label="Width (in)" name="width" type="number" required onChange={handleChange} />
           </Grid>
-          <Grid item xs={3}>
-            <TextField label="Height (in)" name="height" type="number" required fullWidth onChange={handleChange} />
+          <Grid item xs={2}>
+            <TextField label="Height (in)" name="height" type="number" required onChange={handleChange} />
           </Grid>
 
           <Grid item xs={12} textAlign="center" sx={{ mt: 2 }}>
