@@ -39,25 +39,24 @@ export default function QuoteForm({ form, setForm, handleSubmit }) {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <Grid container spacing={2} sx={{
+        <Grid container spacing={{xs: 2, sm: 3}} sx={{
             justifyContent: "center",
             alignItems: "center",
-            px: 40
         }}
         >
         <Grid item xs={12}><h2>LTL Quote Request</h2></Grid>
 
-          <Grid item xs={3}>
+          <Grid item xs={12} sm={6} md={3}> 
             <TextField 
               label="Pickup Zip" 
               name="pickupZip" 
-              required 
+              required
+              fullWidth 
               value={form.pickupZip} 
               onChange={handleChange} />
           </Grid>
 
-
-          <Grid item xs={3}>
+          <Grid item xs={12} sm={6} md={3}> 
             <TextField
               label="Pickup Ready Date"
               type="date"
@@ -68,7 +67,7 @@ export default function QuoteForm({ form, setForm, handleSubmit }) {
               onChange={handleChange}
             />
           </Grid>
-          <Grid item xs={3}>
+          <Grid item xs={12} sm={6} md={3}> 
             <TextField 
               label="Pickup Ready Time" 
               type='time'
@@ -82,11 +81,12 @@ export default function QuoteForm({ form, setForm, handleSubmit }) {
               onChange={handleChange} />
           </Grid>
 
-          <Grid item xs={3}>
+          <Grid item xs={12} sm={6} md={3}> 
             <TextField 
               label="Delivery Zip" 
               name="deliveryZip" 
               required 
+              fullWidth
               value={form.deliveryZip} 
               onChange={handleChange} />
           </Grid>
@@ -109,7 +109,7 @@ export default function QuoteForm({ form, setForm, handleSubmit }) {
           */}
 
 
-          <Grid item xs={2}>
+          <Grid item xs={12} sm={4} md={2}>
             <TextField
               select
               label="Freight Type"
@@ -126,25 +126,25 @@ export default function QuoteForm({ form, setForm, handleSubmit }) {
                 ))}
             </TextField>
           </Grid>
-          <Grid item xs={2}>
-            <TextField label="Quantity" name="quantity" type="number" required value={form.quantity} onChange={handleChange} />
+          <Grid item xs={12} sm={4} md={2}>
+            <TextField label="Quantity" name="quantity" type="number" required fullWidth value={form.quantity} onChange={handleChange} />
           </Grid>
 
-          <Grid item xs={2}>
-            <TextField label="Weight (lbs)" name="weight" type="number" required onChange={handleChange} />
+          <Grid item xs={12} sm={4} md={2}>
+            <TextField label="Weight (lbs)" name="weight" type="number" required fullWidth onChange={handleChange} />
           </Grid>
-          <Grid item xs={2}>
-            <TextField label="Length (in)" name="length" type="number" required onChange={handleChange} />
+          <Grid item xs={12} sm={4} md={2}>
+            <TextField label="Length (in)" name="length" type="number" required fullWidth onChange={handleChange} />
           </Grid>
-          <Grid item xs={2}>
-            <TextField label="Width (in)" name="width" type="number" required onChange={handleChange} />
+          <Grid item xs={12} sm={4} md={2}>
+            <TextField label="Width (in)" name="width" type="number" required fullWidth onChange={handleChange} />
           </Grid>
-          <Grid item xs={2}>
-            <TextField label="Height (in)" name="height" type="number" required onChange={handleChange} />
+          <Grid item xs={12} sm={4} md={2}>
+            <TextField label="Height (in)" name="height" type="number" required fullWidth onChange={handleChange} />
           </Grid>
 
           <Grid item xs={12} textAlign="center" sx={{ mt: 2 }}>
-            <Button variant="contained" color="primary" type="submit">
+            <Button variant="contained" color="primary" type="submit" fullWidth>
               Get Quote
             </Button>
           </Grid>

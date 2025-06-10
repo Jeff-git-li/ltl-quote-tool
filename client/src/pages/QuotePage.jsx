@@ -50,8 +50,7 @@ export default function HomePage() {
   };
 
   return (
-    <Container maxWidth={false} sx={{ px: 4, py: 1 }}>
-
+    <Container maxWidth="md" sx={{ px: 4, py: 1 }}>
       <QuoteForm form={form} setForm={setForm} handleSubmit={handleSubmit} />
       {quote?.data?.rates?.length > 0 && <QuoteResultsTable rates={quote.data.rates} />}
     </Container>
