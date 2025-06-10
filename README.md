@@ -10,10 +10,11 @@ Built with:
 
 ## 🚀 Features
 
-- Collects detailed shipping info via a responsive form (pickup, delivery, freight)
-- Sends quote request to Mothership API
-- Displays results in a sortable, paginated Material UI DataGrid
-- Fast modern stack: Vite + MUI for UI, Express backend
+- Responsive, mobile-friendly quote request form (pickup, delivery, freight details)
+- Real-time quote fetching from Mothership API
+- Results displayed in a sortable, paginated, horizontally-scrollable DataGrid
+- Modern stack: Vite + React + MUI for UI, Express backend
+- Works great on desktop and mobile devices
 
 ---
 
@@ -23,13 +24,19 @@ Built with:
 ltl-quote-tool/
 ├── client/          # Vite React frontend
 │   ├── src/
-│   │   ├── components/QuoteForm.jsx
-│   │   ├── components/QuoteResultsTable.jsx
-│   │   └── main.jsx, App.jsx
+│   │   ├── components/
+│   │   │   ├── QuoteForm.jsx
+│   │   │   └── QuoteResultsTable.jsx
+│   │   ├── pages/
+│   │   │   └── QuotePage.jsx
+│   │   ├── App.jsx
+│   │   └── main.jsx
+│   └── public/
 ├── server/          # Node.js backend
 │   ├── server.js
 │   ├── routes.js
 │   └── .env         # stores API key securely (not committed)
+└── README.md
 ```
 
 ---
@@ -50,12 +57,6 @@ cd ltl-quote-tool
 ```bash
 cd server
 npm install
-```
-
-Generate the Mothership SDK:
-
-```bash
-npx api install "@mothership/v0.9#cmi6fx2tm8oou17d"
 ```
 
 Create a `.env` file:
@@ -92,13 +93,20 @@ npm run dev
 
 ---
 
+## 📱 Mobile Friendly
+
+- The form and results table are fully responsive.
+- On mobile, the table can be scrolled horizontally and includes a swipe hint.
+- All form fields and buttons are optimized for touch devices.
+
+---
+
 ## 📦 Deployment Notes
 
-- **Never commit your `.env` or `@api/` folder.**
+- **Never commit your `.env` folder.**
 - Make sure `.gitignore` includes:
   ```gitignore
   node_modules/
-  @api/
   .env
   ```
 
