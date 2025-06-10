@@ -3,9 +3,14 @@ import {
   TextField,
   MenuItem,
   Button,
+  useTheme,
+  useMediaQuery
 } from '@mui/material';
 
 export default function QuoteForm({ form, setForm, handleSubmit }) {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
@@ -38,13 +43,17 @@ export default function QuoteForm({ form, setForm, handleSubmit }) {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} style={{ paddingLeft: isMobile ? 8 : 0, paddingRight: isMobile ? 8 : 0 }}>
         <Grid container spacing={{xs: 2, sm: 3}} sx={{
             justifyContent: "center",
             alignItems: "center",
         }}
         >
-        <Grid item xs={12}><h2>LTL Quote Request</h2></Grid>
+        <Grid item xs={12}>
+          <h2 style={{ fontSize: isMobile ? '1.2rem' : '1.5rem', textAlign: 'center' }}>
+            LTL Quote Request
+          </h2>
+        </Grid>
 
           <Grid item xs={12} sm={6} md={3}> 
             <TextField 
@@ -143,7 +152,7 @@ export default function QuoteForm({ form, setForm, handleSubmit }) {
             <TextField label="Height (in)" name="height" type="number" required fullWidth onChange={handleChange} />
           </Grid>
 
-          <Grid item xs={12} textAlign="center" sx={{ mt: 2 }}>
+          <Grid item xs={12} textAlign="center" sx={{ mt: isMobile ? 1 : 2 }}>
             <Button variant="contained" color="primary" type="submit" fullWidth>
               Get Quote
             </Button>

@@ -2,9 +2,11 @@ import { useState } from 'react';
 import axios from 'axios';
 import QuoteForm from '../components/QuoteForm';
 import QuoteResultsTable from '../components/QuoteResultsTable';
-import { Container } from '@mui/material';
+import { Container, useMediaQuery, useTheme } from '@mui/material';
 
 export default function HomePage() {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const tomorrow = new Date(Date.now() + 86400000).toISOString().split('T')[0];
   const formatTime = (t) => t.replace(':', '').padStart(4, '0');
 
@@ -50,7 +52,15 @@ export default function HomePage() {
   };
 
   return (
-    <Container maxWidth="md" sx={{ px: 4, py: 1 }}>
+    <Container
+      maxWidth="md"
+      disableGutters={isMobile}
+      sx={{
+        px: isMobile ? 0.5 : 4,
+        py: 1,
+        width: '100%',
+      }}
+    >
       <QuoteForm form={form} setForm={setForm} handleSubmit={handleSubmit} />
       {quote?.data?.rates?.length > 0 && <QuoteResultsTable rates={quote.data.rates} />}
     </Container>
