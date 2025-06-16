@@ -47,14 +47,21 @@ const QuoteResultsTable = ({ rates }) => {
       <div
         style={{
           width: '100%',
-          minWidth: isMobile ? 600 : 'auto',
+          minWidth: isMobile ? 700 : 'auto',
           overflowX: 'auto',
           WebkitOverflowScrolling: 'touch',
           borderRadius: 8,
           border: '1px solid #eee',
           marginBottom: 16,
+          background: '#fff',
+          // Show scroll bar always on mobile for clarity
+          scrollbarWidth: isMobile ? 'thin' : undefined,
+          msOverflowStyle: isMobile ? 'auto' : undefined,
         }}
       >
+        <div style={{
+          minWidth: isMobile ? 700 : 'auto', // Ensure DataGrid itself is wide enough to scroll
+        }}>
         <DataGrid
           rows={rows}
           columns={columns}
@@ -75,6 +82,7 @@ const QuoteResultsTable = ({ rates }) => {
             },
           }}
         />
+        </div> 
       </div>
       {isMobile && (
         <div style={{

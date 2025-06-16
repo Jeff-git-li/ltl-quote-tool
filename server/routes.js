@@ -33,7 +33,8 @@ const get_quotes = async function (req, res) {
 
   try {
     const response = await axios.post(
-      'https://sandbox.api.mothership.com/beta/quotes',
+      'https://api.mothership.com/beta/quotes',
+      // 'https://sandbox.api.mothership.com/beta/quotes',
       {
         pickup: {
           address: { zip: pickupZip },
